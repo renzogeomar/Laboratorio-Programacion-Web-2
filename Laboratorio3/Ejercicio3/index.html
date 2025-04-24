@@ -9,12 +9,14 @@
     <body>
         <h1>Dias que falta para el día de Arequipa</h1>
         <h2 id="demo">Fecha actual:</h2>
+        <h2>Día de Arequipa: 15 de Agosto </h2>
         <button onclick="evento()">presionar</button>;
 
         <script>
             function evento(){
                 let fechaActual=new Date();
-                document.getElementById("demo").innerHTML= "Fecha actual: " + fechaActual;
+                let diaActual= fechaActual.getDate();
+                document.getElementById("demo").innerHTML= "Fecha actual: " + diaActual;
             }
 
 

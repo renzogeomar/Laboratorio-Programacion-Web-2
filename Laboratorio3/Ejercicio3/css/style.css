@@ -56,20 +56,5 @@ h1 {
 h2 {
     font-size: 1.4em;
     margin: 10px 0;
-    color: #4e342e;
-}
-
-
-@media (max-width: 600px) {
-    body {
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.2em;
-    }
+    color: #fff;
 }

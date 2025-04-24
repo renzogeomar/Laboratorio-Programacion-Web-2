@@ -14,10 +14,12 @@
         </div>
         <script>
             function extraer(){
-                let textoOriginal=document.getElementById("texto").value;
+                let textoOriginal=document.getElementById("texto").value.trim();
                 let textoExtraido= textoOriginal.split('https://meet.google.com/')[1].split('?')[0];
-                document.getElementById("demo").innerText = textoExtraido;
+                let textoSinGuiones= textoExtraido.split("-").join("");
+                document.getElementById("demo").innerText = textoSinGuiones;
             }
+            //https://meet.google.com/ptf-cjai-yie?authuser=2
         </script>
     </body>
     </head>

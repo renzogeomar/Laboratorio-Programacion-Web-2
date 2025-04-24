@@ -8,12 +8,16 @@
     <body>
         <h1>Ingrese el URL de la sesión de google meet que desea extraer el código</h1>
         <input type="text" id="texto" placeholder=" ">
-        <button onclick="">extraer</button>
+        <button onclick="extraer()">extraer</button>
         <div id="codigoExtraido">
             <p id="demo"></p>
         </div>
         <script>
-
+            function extraer(){
+                let textoOriginal=document.getElementById("texto").value;
+                let textoExtraido= textoOriginal.split('https://meet.google.com/')[1].split('?')[0];
+                document.getElementById("demo").innerText = textoExtraido;
+            }
         </script>
     </body>
     </head>

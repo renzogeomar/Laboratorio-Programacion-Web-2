@@ -3,12 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>Pagina para invertir palabras</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <h1>Ingrese el texto que desea invertir</h1>
         <input type="text" id="texto" placeholder=" ">
-        <button onclick="invertir()">guardar</button>
-        <p id="demo"></p>
+        <button onclick="invertir()">invertir</button>
+        <div id="textoInvertido">
+            <p id="demo"></p>
+        </div>
         <script>
             function invertir(){
                 let textoOriginal=document.getElementById("texto").value;

@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Pagina ver cuanto falta para el aniversario de Arequipa</title>
+        <title>Pagina para ver cuanto falta para el aniversario de Arequipa</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>Dias que falta para el día de Arequipa</h1>
-        <h2 id="demo">Fecha actual:</h2>
-        <h2>Día de Arequipa: 15 de Agosto </h2>
-        <h2 id="demo4">Fecha actual:</h2>
-        <button onclick="evento()">presionar</button>;
+        <div id="contenedor">
+            <div id="texto">
+                <h1>HOY ES...</h1>
+                <h2 id="demo"></h2>
+                <h2>Día de Arequipa: 15 de Agosto</h2>
+                <h2>Faltan...</h2>
+                <h2 id="demo4"></h2>
+            </div>
+            <div id="imagen">
+                <img src="css/arequipa.jpg" alt="Arequipa" width="500" height="300">
+            </div>
+        </div>
         <script>
             function evento(){
                 let fechaActual=new Date();
@@ -40,9 +46,10 @@
                     case 11: nombreMes = "Diciembre"; break;
                     default: nombreMes = "Mes desconocido"; break;
                 }
-                document.getElementById("demo").innerHTML= "Hoy es: " + diaActual + " de " + nombreMes + " del " + añoActual;
-                document.getElementById("demo4").innerHTML= "Dias faltantes: "+ diasFaltantes;
+                document.getElementById("demo").innerHTML= diaActual + " de " + nombreMes + " del " + añoActual;
+                document.getElementById("demo4").innerHTML=  diasFaltantes + " días para el aniversario de Arequipa";
             }
+            window.onload = evento;
         </script>
     </body>
 </html>

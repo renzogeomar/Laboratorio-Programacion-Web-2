@@ -2,7 +2,7 @@ let fechaActual= new Date();
 let day=fechaActual.getDay();
 console.log(fechaActual);
 console.log(day);
-console.log(fecha(day));
+console.log("El dia de hoy es: "+fecha(day));
 function fecha(day){
     switch(day){
         case 0:

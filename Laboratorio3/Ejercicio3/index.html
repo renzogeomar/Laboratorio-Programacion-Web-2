@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pagina ver cuanto falta para el aniversario de Arequipa</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>Dias que falta para el día de Arequipa</h1>
+        <h2 id="demo">Fecha actual:</h2>
+        <button onclick="evento()">presionar</button>;
+
+        <script>
+            function evento(){
+                let fechaActual=new Date();
+                document.getElementById("demo").innerHTML= "Fecha actual: " + fechaActual;
+            }
+
+
+        </script>
+    </body>
+</html>

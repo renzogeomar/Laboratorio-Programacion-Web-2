@@ -6,6 +6,31 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <div id="principal">
+            <h1>Presionar para modificar</h1>
+            <p>Esta página modifica el texto haciendo más grande o más pequeño presionando los botones</p>
+            <input type="text" id="texto" placeholder=" ">
+            <button onclick="mostrarTexto()">Mostrar texto</button>
+            <button onclick="agrandarTexto()">agrandar</button>
+        </div>
+        <div id="textoModificado">
+            <p id="demo"></p>
+        </div>
+        <script>
+            function mostrarTexto() {
+                let textoInput = document.getElementById("texto").value;
+                let demo = document.getElementById("demo");
+                document.getElementById("demo").textContent = textoInput;
+                demo.style.fontSize = "16px";
+            }
+        
+            function agrandarTexto() {
+                let demo = document.getElementById("demo");
+                let currentSize = window.getComputedStyle(demo).fontSize;
+                let newSize = parseFloat(currentSize) + 2; // Incrementa el tamaño en 2px
+                demo.style.fontSize = newSize + "px";
+            }
+        </script>
 
     </body>
     </head>

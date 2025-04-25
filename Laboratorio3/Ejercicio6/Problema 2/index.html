@@ -9,11 +9,28 @@
         <div id="principal">
             <h1>Presionar para seleccionar campo</h1>
             <p>Esta página web le permite realizar las operaciones aritmética, lógicas y de bits básicas</p>
-            <button onclick="">operaciones aritméticas</button>
-            <button onclick="">operaciones lógicas</button>
-            <button onclick="">operaciones de bits</button>
+            <button onclick="seleccionarInterfaz('aritmetica')" id="aritmetica">Operaciones aritméticas</button>
+            <button onclick="seleccionarInterfaz('logica')" id="logica">Operaciones lógicas</button>
+            <button onclick="seleccionarInterfaz('bits')" id="bits">Operaciones de bits</button>
 
         </div>
+        <div id="interfaz">
+
+        </div>
+        <script>
+            function seleccionarInterfaz(tipo){
+                let interfaz = document.getElementById("interfaz");
+                if (tipo === "aritmetica") {
+                    interfaz.innerHTML = "<p>Interfaz de operaciones aritméticas (próximamente)</p>";
+                } else if (tipo === "logica") {
+                    interfaz.innerHTML = "<p>Interfaz de operaciones lógicas (próximamente)</p>";
+                } else if (tipo === "bits") {
+                    interfaz.innerHTML = "<p>Interfaz de operaciones de bits (próximamente)</p>";
+                }
+                
+            }
+
+        </script>
 
     </body>
     </head>

@@ -1,53 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Pagina para calcular la suma de todos los valores de una tabla</title>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <h1>Ingresar cantidad de valores que desea en la tabla </h1>
-        <input type="number" id="texto" placeholder=" ">
-        <button onclick="crearTabla()">enviar</button>
-        <div id="tabla-container"></div>
-        <h2 id="resultado"></h2>
-        <script>
-            function crearTabla() {
-                let cantidad = parseInt(getElementById("texto").value);  
-                let tablaContainer=document.getElementById("tabla-container");
-                tablaContainer.innerHTML = ""; // Limpiar el contenido anterior
-                if(cantidad<0){
-                    alert("La cantidad no puede ser negativa");
-                    return;
-                }
-                //crear tabla
-                let tabla = document.createElement("table");
-                tabla.border = "1px solid black";
-                let tbody = document.createElement("tbody");
-                let suma = 0;
-                for(let i=0; i<cantidad; i++){
-                    let fila = document.createElement("tr");
-                    let celda = document.createElement("td");
-                    let valor = Math.floor(Math.random() * 100); // Generar un valor aleatorio entre 0 y 99
-                    celda.innerText = valor;
-                    fila.appendChild(celda);
-                    tbody.appendChild(fila);
-                    suma += valor; // Sumar el valor a la suma total
-                }
-                tabla.appendChild(tbody);
-                tablaContainer.appendChild(tabla); // Agregar la tabla al contenedor
-                let botonSuma = document.createElement("button");
-                botonSuma.textContent = "Calcular suma";
-                
-                // Mostrar la suma total
-                let resultado = document.getElementById("resultado");
-                resultado.innerText = "La suma total de los valores es: " + suma;
-            }
-            function calcularSuma(){
-                
+<head>
+    <meta charset="UTF-8" />
+    <title>Pagina para calcular la suma de todos los valores de una tabla</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Ingresar cantidad de valores que desea en la tabla </h1>
+    <input type="number" id="texto" placeholder=" ">
+    <button onclick="crearTabla()">enviar</button>
+    <div id="tabla-container"></div>
+    <h2 id="resultado"></h2>
+
+    <script>
+        function crearTabla() {
+            let cantidad = parseInt(document.getElementById("texto").value);
+            let tablaContainer = document.getElementById("tabla-container");
+            tablaContainer.innerHTML = ""; // Limpiar el contenido anterior
+
+            if (cantidad < 0 || isNaN(cantidad)) {
+                alert("La cantidad no puede ser negativa o vacía");
+                return;
             }
 
-        </script>
-    </body>
-    </head>
+            let tabla = document.createElement("table");
+            tabla.border = "1px solid black";
+
+            let tbody = document.createElement("tbody");
+            let suma = 0;
+            let columnas = 10; 
+            let filas = Math.ceil(cantidad / columnas); // Calcular el número de filas necesarias
+            for (let j = 0 ; j < filas; j++){
+                let fila = document.createElement("tr");
+                for (let i = 0; i < columnas; i++){
+                    let indice = j * columnas + i;
+                    if(indice>=cantidad) break;
+                    let celda = document.createElement("td");
+                    let valor = Math.floor(Math.random() * 100); // 0-99
+                    celda.innerText = valor;
+                    fila.appendChild(celda);
+                    suma += valor;
+                }
+                tabla.appendChild(fila);
+            }
+
+            tabla.appendChild(tbody);
+            tablaContainer.appendChild(tabla);
+
+            let botonSuma = document.createElement("button");
+            botonSuma.textContent = "Calcular suma";
+            botonSuma.onclick = function () {
+                calcularSuma(suma);
+            };
+
+            tablaContainer.appendChild(botonSuma);
+        }
+
+        function calcularSuma(suma) {
+            let resultado = document.getElementById("resultado");
+            resultado.innerText = "La suma total de los valores es: " + suma;
+        }
+    </script>
+</body>
 </html>

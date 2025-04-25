@@ -12,6 +12,8 @@
             <input type="text" id="texto" placeholder=" ">
             <button onclick="mostrarTexto()">Mostrar texto</button>
             <button onclick="agrandarTexto()">agrandar</button>
+            <button onclick="reducirTexto()">reducir</button>
+            <button onclick="cambiarColor()">Cambiar color</button>
         </div>
         <div id="textoModificado">
             <p id="demo"></p>
@@ -29,6 +31,18 @@
                 let currentSize = window.getComputedStyle(demo).fontSize;
                 let newSize = parseFloat(currentSize) + 2; // Incrementa el tamaño en 2px
                 demo.style.fontSize = newSize + "px";
+            }
+            function reducirTexto(){
+                let demo = document.getElementById("demo");
+                let currentSize = window.getComputedStyle(demo).fontSize;
+                let newSize = parseFloat(currentSize) - 2;
+                demo.style.fontSize = newSize + "px";
+            }
+            function cambiarColor() {
+                let demo = document.getElementById("demo");
+                let colors = ["red", "blue", "green", "orange", "purple"];
+                let randomColor = colors[Math.floor(Math.random() * colors.length)];
+                demo.style.color = randomColor;
             }
         </script>
 

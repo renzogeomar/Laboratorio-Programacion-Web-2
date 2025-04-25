@@ -21,13 +21,37 @@
             function seleccionarInterfaz(tipo){
                 let interfaz = document.getElementById("interfaz");
                 if (tipo === "aritmetica") {
-                    interfaz.innerHTML = "<p>Interfaz de operaciones aritméticas (próximamente)</p>";
+                    operacionesAritmeticas();
+                    //interfaz.innerHTML = "<p>Interfaz de operaciones aritméticas (próximamente)</p>";
                 } else if (tipo === "logica") {
                     interfaz.innerHTML = "<p>Interfaz de operaciones lógicas (próximamente)</p>";
                 } else if (tipo === "bits") {
                     interfaz.innerHTML = "<p>Interfaz de operaciones de bits (próximamente)</p>";
                 }
                 
+            }
+            function operacionesAritmeticas(){
+                let interfaz = document.getElementById("interfaz");
+                let html = `
+                    <h2>Operaciones aritméticas</h2>
+                    <input type="number" id="num1" placeholder="Número 1">
+                    <input type="number" id="num2" placeholder="Número 2">
+
+                    <select id="operacion">
+                        <option value="sumar">Sumar</option>
+                        <option value="restar">Restar</option>
+                        <option value="multiplicar">Multiplicar</option>
+                        <option value="dividir">Dividir</option>
+                    </select>
+
+                    <button onclick="calcular()">Calcular</button>
+                    <p id="resultado"></p>
+                `;
+
+                interfaz.innerHTML = html;
+                let num1 = document.getElementById("num1");
+                let num2 = document.getElementById("num2");
+                //let resultado = 
             }
 
         </script>

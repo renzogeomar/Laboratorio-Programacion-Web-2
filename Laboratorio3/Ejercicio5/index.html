@@ -20,6 +20,30 @@
                     alert("La cantidad no puede ser negativa");
                     return;
                 }
+                //crear tabla
+                let tabla = document.createElement("table");
+                tabla.border = "1px solid black";
+                let tbody = document.createElement("tbody");
+                let suma = 0;
+                for(let i=0; i<cantidad; i++){
+                    let fila = document.createElement("tr");
+                    let celda = document.createElement("td");
+                    let valor = Math.floor(Math.random() * 100); // Generar un valor aleatorio entre 0 y 99
+                    celda.innerText = valor;
+                    fila.appendChild(celda);
+                    tbody.appendChild(fila);
+                    suma += valor; // Sumar el valor a la suma total
+                }
+                tabla.appendChild(tbody);
+                tablaContainer.appendChild(tabla); // Agregar la tabla al contenedor
+                let botonSuma = document.createElement("button");
+                botonSuma.textContent = "Calcular suma";
+                
+                // Mostrar la suma total
+                let resultado = document.getElementById("resultado");
+                resultado.innerText = "La suma total de los valores es: " + suma;
+            }
+            function calcularSuma(){
                 
             }
 

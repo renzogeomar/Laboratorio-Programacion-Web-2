@@ -47,7 +47,15 @@
                     default: nombreMes = "Mes desconocido"; break;
                 }
                 document.getElementById("demo").innerHTML= diaActual + " de " + nombreMes + " del " + añoActual;
-                document.getElementById("demo4").innerHTML=  diasFaltantes + " días para el aniversario de Arequipa";
+                if (
+                    fechaActual.getDate() === fechaArequipa.getDate() &&
+                    fechaActual.getMonth() === fechaArequipa.getMonth() &&
+                    fechaActual.getFullYear() === fechaArequipa.getFullYear()
+                ) {
+                    document.getElementById("demo4").innerHTML = "Feliz aniversario de Arequipa";
+                } else {
+                    document.getElementById("demo4").innerHTML = diasFaltantes + " días para el aniversario de Arequipa";
+                }
             }
             window.onload = evento;
         </script>

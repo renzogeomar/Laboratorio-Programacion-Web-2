@@ -11,8 +11,8 @@
             <p>Esta página modifica el texto haciendo más grande o más pequeño presionando los botones</p>
             <input type="text" id="texto" placeholder=" ">
             <button onclick="mostrarTexto()">Mostrar texto</button>
-            <button onclick="agrandarTexto()">agrandar</button>
-            <button onclick="reducirTexto()">reducir</button>
+            <button onclick="agrandarTexto()">Agrandar</button>
+            <button onclick="reducirTexto()">Reducir</button>
             <button onclick="cambiarColor()">Cambiar color</button>
         </div>
         <div id="textoModificado">
@@ -23,6 +23,7 @@
                 let textoInput = document.getElementById("texto").value;
                 let demo = document.getElementById("demo");
                 document.getElementById("demo").textContent = textoInput;
+                demo.style.color = "black"; 
                 demo.style.fontSize = "16px";
             }
         
@@ -39,6 +40,7 @@
                 demo.style.fontSize = newSize + "px";
             }
             function cambiarColor() {
+                let demo = document.getElementById("demo");
                 const r = Math.floor(Math.random() * 200);
                 const g = Math.floor(Math.random() * 200);
                 const b = Math.floor(Math.random() * 200);

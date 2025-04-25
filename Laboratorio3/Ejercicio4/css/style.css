@@ -1,6 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    background-image: image-set(url(fondo.jpg));
+    background-size: cover;       /* La imagen se expande para cubrir todo */
+    background-position: center;  /* Centrada */
+    background-repeat: no-repeat; /* No se repite */
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     display: flex;
@@ -33,7 +37,14 @@ h1 {
     margin-bottom: 30px;
     font-size: 16px;
 }
-
+#principal{
+    background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 20px;
+    backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del texto */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Borde suave */
+}
 /* Campo de entrada */
 #texto {
     width: 80%;

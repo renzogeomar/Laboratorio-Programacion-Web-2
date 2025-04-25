@@ -39,10 +39,10 @@
                 demo.style.fontSize = newSize + "px";
             }
             function cambiarColor() {
-                let demo = document.getElementById("demo");
-                let colors = ["red", "blue", "green", "orange", "purple"];
-                let randomColor = colors[Math.floor(Math.random() * colors.length)];
-                demo.style.color = randomColor;
+                const r = Math.floor(Math.random() * 200);
+                const g = Math.floor(Math.random() * 200);
+                const b = Math.floor(Math.random() * 200);
+                demo.style.color = `rgb(${r}, ${g}, ${b})`; // Cambia el color a uno aleatorio
             }
         </script>
 

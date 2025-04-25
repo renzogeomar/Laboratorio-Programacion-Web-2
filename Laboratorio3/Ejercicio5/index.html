@@ -2,11 +2,27 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Pagina para invertir palabras</title>
+        <title>Pagina para calcular la suma de todos los valores de una tabla</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        <h1>Ingresar cantidad de valores que desea en la tabla </h1>
+        <input type="number" id="texto" placeholder=" ">
+        <button onclick="crearTabla()">enviar</button>
+        <div id="tabla-container"></div>
+        <h2 id="resultado"></h2>
         <script>
+            function crearTabla() {
+                let cantidad = parseInt(getElementById("texto").value);  
+                let tablaContainer=document.getElementById("tabla-container");
+                tablaContainer.innerHTML = ""; // Limpiar el contenido anterior
+                if(cantidad<0){
+                    alert("La cantidad no puede ser negativa");
+                    return;
+                }
+                
+            }
+
         </script>
     </body>
     </head>

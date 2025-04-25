@@ -1,50 +1,78 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #83a4d4, #b6fbff);
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
 }
 
+/* Contenedor principal */
+#principal {
+    background-color: white;
+    margin-top: 80px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Título */
 h1 {
     color: #333;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px #fff;
-}
-
-input[type="text"] {
-    padding: 10px;
-    width: 300px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    font-size: 24px;
     margin-bottom: 15px;
 }
 
-button {
-    padding: 10px 20px;
+/* Párrafo introductorio */
+#principal p {
+    color: #555;
+    margin-bottom: 30px;
     font-size: 16px;
-    background-color: #4CAF50;
+}
+
+/* Campo de entrada */
+#texto {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s;
+}
+
+#texto:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+/* Botón */
+button {
+    background-color: #4a90e2;
     color: white;
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #357ab7;
 }
 
-#textoInvertido {
+/* Resultado */
+#codigoExtraido {
     margin-top: 20px;
-    font-size: 18px;
-    color: #222;
-    background-color: #ffffffa8;
-    padding: 10px 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#demo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
 }

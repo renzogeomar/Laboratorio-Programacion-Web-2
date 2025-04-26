@@ -27,7 +27,8 @@
                     operacionesLogicas();
                     //interfaz.innerHTML = "<p>Interfaz de operaciones lógicas (próximamente)</p>";
                 } else if (tipo === "bits") {
-                    interfaz.innerHTML = "<p>Interfaz de operaciones de bits (próximamente)</p>";
+                    operacionesBits();
+                    //interfaz.innerHTML = "<p>Interfaz de operaciones de bits (próximamente)</p>";
                 }
                 
             }
@@ -175,6 +176,62 @@
                 `;
 
                 interfaz.innerHTML = html;
+                document.getElementById("operacion").addEventListener("change", function () {
+                    const operacion = this.value;
+                    const num2 = document.getElementById("num2");
+                    if (operacion === "not") {
+                        num2.disabled = true;
+                        num2.value = "";
+                    } else {
+                        num2.disabled = false;
+                    }
+                });
+
+            }
+            function calcularBits() {
+                let num1 = document.getElementById("num1").value.trim();
+                let num2 = document.getElementById("num2").value.trim();
+                let operacion = document.getElementById("operacion").value;
+                let resultadoBinario = document.getElementById("resultadoBinario");
+                let resultadoDecimal = document.getElementById("resultadoDecimal");
+
+                // Validar entrada binaria
+                if (!/^[01]+$/.test(num1) || (operacion !== "not" && !/^[01]+$/.test(num2))) {
+                    alert("Por favor ingrese solo números binarios (compuestos de 0 y 1).");
+                    return;
+                }
+
+                let n1 = parseInt(num1, 2);
+                let n2 = parseInt(num2, 2);
+                let res;
+
+                switch (operacion) {
+                    case "and":
+                        res = n1 & n2;
+                        break;
+                    case "or":
+                        res = n1 | n2;
+                        break;
+                    case "xor":
+                        res = n1 ^ n2;
+                        break;
+                    case "not":
+                        // Obtener NOT de solo los bits de num1
+                        let length = num1.length;
+                        let mask = (1 << length) - 1; // Ej: para 4 bits: 1111
+                        res = (~n1) & mask;
+                        break;
+                    default:
+                        res = NaN;
+                }
+
+                if (!isNaN(res)) {
+                    resultadoBinario.innerText = "Resultado en binario: " + res.toString(2).padStart(num1.length, '0');
+                    resultadoDecimal.innerText = "Resultado en decimal: " + res;
+                } else {
+                    resultadoBinario.innerText = "Resultado no válido";
+                    resultadoDecimal.innerText = "";
+                }
             }
         </script>
 

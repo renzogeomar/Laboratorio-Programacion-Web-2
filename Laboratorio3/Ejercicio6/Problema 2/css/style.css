@@ -1,0 +1,94 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: image-set(url(fondo.jpg));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor principal */
+#principal, #interfaz {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    margin-top: 30px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Título y descripción */
+h1 {
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+#principal p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* Botonera organizada */
+.botonera {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Botones */
+button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357ab7;
+}
+
+/* Inputs y selects */
+input[type="text"],
+input[type="number"],
+select {
+    width: 90%;
+    max-width: 250px;
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    display: block;
+    margin-bottom: 20px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+select:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+/* Resultados */
+#resultado, #resultadoBinario, #resultadoDecimal {
+    font-weight: bold;
+    font-size: 18px;
+    color: #222;
+    margin-top: 20px;
+}

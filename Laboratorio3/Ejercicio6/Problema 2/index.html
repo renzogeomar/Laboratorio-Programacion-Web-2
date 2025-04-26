@@ -155,6 +155,27 @@
 
                 resultado.innerText = "Resultado: " + (res ? "v" : "f");
             }
+            function operacionesBits(){
+                let interfaz = document.getElementById("interfaz");
+                let html = `
+                    <h2>Operaciones de bits</h2>
+                    <input type="number" id="num1" placeholder="Número 1">
+                    <input type="number" id="num2" placeholder="Número 2">
+
+                    <select id="operacion">
+                        <option value="and">AND</option>
+                        <option value="or">OR</option>
+                        <option value="xor">XOR</option>
+                        <option value="not">NOT (solo num1)</option>
+                    </select>
+
+                    <button onclick="calcularBits()">Calcular</button>
+                    <p id="resultadoBinario"></p>
+                    <p id="resultadoDecimal"></p>
+                `;
+
+                interfaz.innerHTML = html;
+            }
         </script>
 
     </body>

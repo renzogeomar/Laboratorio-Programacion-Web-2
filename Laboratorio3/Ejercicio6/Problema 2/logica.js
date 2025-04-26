@@ -16,15 +16,17 @@ function operacionesAritmeticas(){
     let interfaz = document.getElementById("interfaz");
     let html = `
         <h2>Operaciones aritméticas</h2>
-        <input type="number" id="num1" placeholder="Número 1">
-        <select id="operacion">
-            <option value="sumar">Sumar</option>
-            <option value="restar">Restar</option>
-            <option value="multiplicar">Multiplicar</option>
-            <option value="dividir">Dividir</option>
-        </select>
-        <input type="number" id="num2" placeholder="Número 2">
-        <button onclick="calcular()">Calcular</button>
+        <div class="fila-horizontal">
+            <input type="number" id="num1" placeholder="Número 1">
+            <select id="operacion">
+                <option value="sumar">Sumar</option>
+                <option value="restar">Restar</option>
+                <option value="multiplicar">Multiplicar</option>
+                <option value="dividir">Dividir</option>
+            </select>
+            <input type="number" id="num2" placeholder="Número 2">
+            <button onclick="calcular()">Calcular</button>
+        </div>
         <p id="resultado"></p>
     `;
 
@@ -65,22 +67,24 @@ function operacionesLogicas(){
     let interfaz = document.getElementById("interfaz");
     let html = `
         <h2>Operaciones lógicas</h2>
-        <select id="num1">
-            <option value="v">Verdadero (v)</option>
-            <option value="f">Falso (f)</option>
-        </select>
-        <select id="num2">
-            <option value="v">Verdadero (v)</option>
-            <option value="f">Falso (f)</option>
-        </select>
-        <select id="operacion">
-            <option value="and">∧ (AND)</option>
-            <option value="or">∨ (OR)</option>
-            <option value="not">¬ (NOT - solo num1)</option>
-            <option value="equiv">↔ (Si y solo si)</option>
-            <option value="implica">→ (Entonces)</option>
-        </select>
-        <button onclick="calcularLogica()">Calcular</button>
+        <div class="fila-horizontal">
+            <select id="num1">
+                <option value="v">Verdadero (v)</option>
+                <option value="f">Falso (f)</option>
+            </select>
+            <select id="num2">
+                <option value="v">Verdadero (v)</option>
+                <option value="f">Falso (f)</option>
+            </select>
+            <select id="operacion">
+                <option value="and">∧ (AND)</option>
+                <option value="or">∨ (OR)</option>
+                <option value="not">¬ (NOT - solo num1)</option>
+                <option value="equiv">↔ (Si y solo si)</option>
+                <option value="implica">→ (Entonces)</option>
+            </select>
+            <button onclick="calcularLogica()">Calcular</button>
+        </div>
         <p id="resultado"></p>
     `;
     interfaz.innerHTML = html;
@@ -138,17 +142,17 @@ function operacionesBits(){
     let interfaz = document.getElementById("interfaz");
     let html = `
         <h2>Operaciones de bits</h2>
-        <input type="number" id="num1" placeholder="Número 1">
-        <input type="number" id="num2" placeholder="Número 2">
-
-        <select id="operacion">
-            <option value="and">AND</option>
-            <option value="or">OR</option>
-            <option value="xor">XOR</option>
-            <option value="not">NOT (solo num1)</option>
-        </select>
-
-        <button onclick="calcularBits()">Calcular</button>
+        <div class="fila-horizontal">
+            <input type="number" id="num1" placeholder="Número 1">
+            <input type="number" id="num2" placeholder="Número 2">
+            <select id="operacion">
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+                <option value="xor">XOR</option>
+                <option value="not">NOT (solo num1)</option>
+            </select>
+            <button onclick="calcularBits()">Calcular</button>
+        </div>
         <p id="resultadoBinario"></p>
         <p id="resultadoDecimal"></p>
     `;

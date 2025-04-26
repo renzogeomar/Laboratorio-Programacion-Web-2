@@ -19,7 +19,7 @@
         <script>
             function extraer(){
                 let textoOriginal=document.getElementById("texto").value.trim();
-                let textoExtraido= textoOriginal.split('https://meet.google.com/')[1].split('?')[0];
+                let textoExtraido= textoOriginal.split('https://meet.google.com/')[1].split('?')[0];//expresion regular para extraer el código
                 let textoSinGuiones= textoExtraido.split("-").join("");
                 document.getElementById("demo").innerText = textoSinGuiones;
             }

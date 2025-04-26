@@ -11,7 +11,6 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
 /* Contenedor principal */
 #principal {
     background-color: white;
@@ -23,14 +22,12 @@ body {
     max-width: 500px;
     text-align: center;
 }
-
 /* Título */
 h1 {
     color: #333;
     font-size: 24px;
     margin-bottom: 15px;
 }
-
 /* Párrafo introductorio */
 #principal p {
     color: #555;
@@ -55,12 +52,10 @@ h1 {
     margin-bottom: 20px;
     transition: border-color 0.3s;
 }
-
 #texto:focus {
     border-color: #4a90e2;
     outline: none;
 }
-
 /* Botón */
 button {
     background-color: #4a90e2;
@@ -72,16 +67,13 @@ button {
     font-size: 16px;
     transition: background-color 0.3s;
 }
-
 button:hover {
     background-color: #357ab7;
 }
-
 /* Resultado */
 #codigoExtraido {
     margin-top: 20px;
 }
-
 #demo {
     font-size: 20px;
     font-weight: bold;

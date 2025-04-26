@@ -96,12 +96,48 @@
                         <option value="equiv">↔ (Si y solo si)</option>
                         <option value="implica">→ (Entonces)</option>
                     </select>
-
                     <button onclick="calcular()">Calcular</button>
                     <p id="resultado"></p>
                 `;
-
                 interfaz.innerHTML = html;
+            }
+            function calcularLogica(){
+                let num1 = document.getElementById("num1").value.toLowerCase();
+                let num2 = document.getElementById("num2").value.toLowerCase;
+                let operacion = document.getElementById("operacion").value;
+                let resultado = document.getElementById("resultado");
+                let res;
+                if (num1 !== "v" && num1 !== "f") {
+                    alert("Por favor ingrese valores booleanos válidos (v o f).");
+                    return;
+                }
+                if (operacion !== "not" && (num2 !== "v" && num2 !== "f")) {
+                    alert("Por favor ingrese 'v' o 'f' como valor para el segundo número.");
+                    return;
+                }
+                let bool1 = (num1 === "v");
+                let bool2 = (num2 === "v");
+                switch (operacion) {
+                    case "and":
+                        res = bool1 && bool2;
+                        break;
+                    case "or":
+                        res = bool1 || bool2;
+                        break;
+                    case "not":
+                        res = !bool1;
+                        break;
+                    case "equiv":
+                        res = bool1 === bool2;
+                        break;
+                    case "implica":
+                        res = !bool1 || bool2; // A → B = ¬A ∨ B
+                        break;
+                    default:
+                        res = "Operación no válida";
+                }
+
+                resultado.innerText = "Resultado: " + (res ? "v" : "f");
             }
 
         </script>

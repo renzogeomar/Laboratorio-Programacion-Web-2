@@ -24,7 +24,8 @@
                     operacionesAritmeticas();
                     //interfaz.innerHTML = "<p>Interfaz de operaciones aritméticas (próximamente)</p>";
                 } else if (tipo === "logica") {
-                    interfaz.innerHTML = "<p>Interfaz de operaciones lógicas (próximamente)</p>";
+                    operacionesLogicas();
+                    //interfaz.innerHTML = "<p>Interfaz de operaciones lógicas (próximamente)</p>";
                 } else if (tipo === "bits") {
                     interfaz.innerHTML = "<p>Interfaz de operaciones de bits (próximamente)</p>";
                 }
@@ -80,6 +81,27 @@
                         break;
                 }
                 resultado.innerText = "Resultado: " + res;
+            }
+            function operacionesLogicas(){
+                let interfaz = document.getElementById("interfaz");
+                let html = `
+                    <h2>Operaciones lógicas</h2>
+                    <input type="text" id="num1" placeholder="Número 1">
+                    <input type="text" id="num2" placeholder="Número 2">
+
+                    <select id="operacion">
+                        <option value="and">∧ (AND)</option>
+                        <option value="or">∨ (OR)</option>
+                        <option value="not">¬ (NOT - solo num1)</option>
+                        <option value="equiv">↔ (Si y solo si)</option>
+                        <option value="implica">→ (Entonces)</option>
+                    </select>
+
+                    <button onclick="calcular()">Calcular</button>
+                    <p id="resultado"></p>
+                `;
+
+                interfaz.innerHTML = html;
             }
 
         </script>

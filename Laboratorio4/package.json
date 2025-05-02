@@ -1,0 +1,22 @@
+{
+  "name": "Laboratorio4",
+  "version": "1.0.0",
+  "description": "mi primer package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renzogeomar/Laboratorio-Programacion-Web-2.git"
+  },
+  "author": "Renzo Geomar Mamani Quispe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renzogeomar/Laboratorio-Programacion-Web-2/issues"
+  },
+  "homepage": "https://github.com/renzogeomar/Laboratorio-Programacion-Web-2#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

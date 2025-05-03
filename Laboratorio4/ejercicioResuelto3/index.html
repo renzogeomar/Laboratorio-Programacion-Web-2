@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Aplicación Web</title>
+</head>
+<body>
+    <h1>¡Bienvenido a mi aplicación!</h1>
+    <p>Probando el ejercicio 3</p>
+
+    <script>
+        // En el lado del cliente
+        function recitar(markupText) {
+            const url = 'http://localhost:3000/'
+            const data = {
+                text: markupText
+            }
+            console.log(data)
+            const request = {
+                method: 'POST', // Podría ser GET
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }
+            http = fetch(url, request)
+            http.then(
+                response => response.json()
+            ).then(
+                data => {
+                    document.querySelector("#htmlCode").innerHTML = data.text
+                }
+            )
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const text = document.querySelector('#markupText')
+            document.querySelector('#markupForm').onsubmit = () => {
+                recitar(text.value)
+                return false;
+            }
+        })
+    </script>
+</body>
+</html>

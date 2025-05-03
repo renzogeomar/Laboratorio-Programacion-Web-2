@@ -1,0 +1,6 @@
+<note>
+  <to>Usuario</to>
+  <from>Servidor</from>
+  <heading>Recordatorio</heading>
+  <body>Este es un mensaje XML de prueba</body>
+</note>

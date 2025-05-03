@@ -19,7 +19,7 @@
         }
 
             function myFunction(xhttp) {
-                document.getElementById("demo").innerHTML =  xhttp.responseText;
+                document.getElementById("demo").innerHTML =  xhttp.responseText.replace(/\n/g, "<br>");
             }
         </script>
     </body>

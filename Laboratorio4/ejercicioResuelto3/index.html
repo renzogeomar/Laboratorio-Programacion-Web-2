@@ -8,7 +8,11 @@
 <body>
     <h1>¡Bienvenido a mi aplicación!</h1>
     <p>Probando el ejercicio 3</p>
-
+    <form id="markupForm">
+        <input type="text" id="markupText" placeholder="Escribe tu texto aquí" required>
+        <button type="submit">Recitar</button>
+    </form>
+    <div id="htmlCode" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;"></div>
     <script>
         // En el lado del cliente
         function recitar(markupText) {

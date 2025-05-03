@@ -1,36 +1,35 @@
 <?php
-    $mysqli = new mysqli("servername", "username", "password", "dbname");
-    if($mysqli->connect_error) {
-    exit('Could not connect');
-    }
+// Conexión a la base de datos
+$mysqli = new mysqli("localhost", "root", "", "empresa_demo");
+if ($mysqli->connect_error) {
+    exit('No se pudo conectar a la base de datos.');
+}
 
-    $sql = "SELECT customerid, companyname, contactname, address, city, postalcode, country
-    FROM customers WHERE customerid = ?";
+// Consulta SQL ajustada a tu tabla "clientes"
+$sql = "SELECT id_cliente, nombre_empresa, nombre_contacto, direccion, ciudad, codigo_postal, pais
+        FROM clientes WHERE id_cliente = ?";
 
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $_GET['q']);
-    $stmt->execute();
-    $stmt->store_result();
-    $stmt->bind_result($cid, $cname, $name, $adr, $city, $pcode, $country);
-    $stmt->fetch();
-    $stmt->close();
+// Preparar y ejecutar
+$stmt = $mysqli->prepare($sql);
+$stmt->bind_param("s", $_GET['q']);
+$stmt->execute();
+$stmt->store_result();
+$stmt->bind_result($id, $empresa, $contacto, $direccion, $ciudad, $postal, $pais);
+$stmt->fetch();
+$stmt->close();
 
-    echo "<table>";
-    echo "<tr>";
-    echo "<th>CustomerID</th>";
-    echo "<td>" . $cid . "</td>";
-    echo "<th>CompanyName</th>";
-    echo "<td>" . $cname . "</td>";
-    echo "<th>ContactName</th>";
-    echo "<td>" . $name . "</td>";
-    echo "<th>Address</th>";
-    echo "<td>" . $adr . "</td>";
-    echo "<th>City</th>";
-    echo "<td>" . $city . "</td>";
-    echo "<th>PostalCode</th>";
-    echo "<td>" . $pcode . "</td>";
-    echo "<th>Country</th>";
-    echo "<td>" . $country . "</td>";
-    echo "</tr>";
+// Mostrar resultados en tabla HTML
+if ($id) {
+    echo "<table border='1'>";
+    echo "<tr><th>ID</th><td>$id</td></tr>";
+    echo "<tr><th>Empresa</th><td>$empresa</td></tr>";
+    echo "<tr><th>Contacto</th><td>$contacto</td></tr>";
+    echo "<tr><th>Dirección</th><td>$direccion</td></tr>";
+    echo "<tr><th>Ciudad</th><td>$ciudad</td></tr>";
+    echo "<tr><th>Código Postal</th><td>$postal</td></tr>";
+    echo "<tr><th>País</th><td>$pais</td></tr>";
     echo "</table>";
+} else {
+    echo "Cliente no encontrado.";
+}
 ?>

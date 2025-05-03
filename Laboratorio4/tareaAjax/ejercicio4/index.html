@@ -9,9 +9,11 @@
         <p>Last modified: <span id="demo"></span></p>
 
         <script>
+            
             const xhttp=new XMLHttpRequest();
             xhttp.onload = function() {
             document.getElementById("demo").innerHTML =
+            // indica cuándo fue modificado por última vez ese archivo en el servidor
             this.getResponseHeader("Last-Modified");
             }
             xhttp.open("GET", "ajax_info.txt");

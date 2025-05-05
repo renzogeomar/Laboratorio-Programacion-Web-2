@@ -40,6 +40,21 @@
                                 chartData.push([fecha, valor]);
                             }
         
+                            // Cargando Google Charts y dibujando el gráfico
+                            google.charts.load("current", { packages: ["corechart"] });
+                            google.charts.setOnLoadCallback(function () {
+                                const dataTable = google.visualization.arrayToDataTable(chartData);
+        
+                                const options = {
+                                    title: "Casos confirmados en Arequipa",
+                                    hAxis: { title: "Fecha" },
+                                    vAxis: { title: "Confirmados" },
+                                    legend: { position: "bottom" }
+                                };
+        
+                                const chart = new google.visualization.LineChart(document.getElementById("principal"));
+                                chart.draw(dataTable, options);
+                            });
                         } else {
                             console.error("No se encontraron datos para la región Arequipa.");
                         }

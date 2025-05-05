@@ -20,20 +20,34 @@
                     if (xhttp.status === 200) {
                         // Convierte la respuesta en un objeto JSON
                         const data = JSON.parse(xhttp.responseText);
-        
+
                         // Calcula el total de confirmados por región
                         const resultados = data.map(region => {
-                            // Obtén el último valor de "confirmed"
                             const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
-        
-                            // Devuelve un objeto con el nombre de la región y el total
                             return { nombre: region.region, total: totalConfirmados };
-                        })
-                        .sort((a, b) => b.total - a.total) // Ordena de mayor a menor
-                        .slice(0, 10); // Toma las primeras 10 regiones
+                        });
+
+                        // Encuentra las 10 regiones con más casos confirmados
+                        let top10 = [];
+                        for (let i = 0; i < 10; i++) {
+                            let max = { nombre: "", total: -1 };
+                            let maxIndex = -1;
+
+                            for (let j = 0; j < resultados.length; j++) {
+                                if (resultados[j].total > max.total) {
+                                    max = resultados[j];
+                                    maxIndex = j;
+                                }
+                            }
+
+                            if (maxIndex !== -1) {
+                                top10.push(max);
+                                resultados.splice(maxIndex, 1); // Elimina la región ya seleccionada
+                            }
+                        }
 
                         // Formatea los resultados para mostrarlos
-                        const listaResultados = resultados.map(region => `${region.nombre}: ${region.total}`);
+                        const listaResultados = top10.map(region => `${region.nombre}: ${region.total}`);
 
                         // Muestra los resultados en el elemento con id "lista"
                         document.getElementById("lista").innerHTML = listaResultados.join("<br>");

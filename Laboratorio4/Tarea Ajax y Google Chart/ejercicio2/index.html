@@ -13,14 +13,33 @@
         </div>
 
         <script>
-            function mostrar(){
+            function mostrar() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../data.json", true);
-                xhttp.onload = function (){
-                    
-                }
-            }
+                xhttp.onload = function () {
+                    if (xhttp.status === 200) {
+                        // Convierte la respuesta en un objeto JSON
+                        const data = JSON.parse(xhttp.responseText);
+        
+                        // Calcula el total de confirmados por región
+                        const resultados = data.map(region => {
+                            // Obtén el último valor de "confirmed"
+                            const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
+        
+                            // Devuelve el nombre de la región y el total
+                            return `${region.region}: ${totalConfirmados}`;
+                        });
 
+                        document.getElementById("lista").innerHTML = resultados.join("<br>");
+                    } else {
+                        console.error("Error al cargar el archivo data.json");
+                    }
+                };
+                xhttp.onerror = function () {
+                    console.error("Error de conexión al intentar cargar el archivo data.json");
+                };
+                xhttp.send();
+            }
         </script>
         
     </body> 

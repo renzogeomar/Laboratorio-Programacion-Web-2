@@ -22,6 +22,14 @@
                         // Convierte la respuesta en un objeto JSON
                         const data = JSON.parse(xhttp.responseText);
         
+                        // Prepara los datos para el gráfico
+                        const chartData = [["Región", "Confirmados"]]; // Encabezados
+                        for (let i = 0; i < data.length; i++) {
+                            const region = data[i];
+                            const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
+                            chartData.push([region.region, totalConfirmados]);
+                        }
+
                     } else {
                         console.error("Error al cargar el archivo data.json");
                     }

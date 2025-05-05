@@ -10,7 +10,7 @@
         <h1>Gráfico comparativo de todas las regiones: </h1>
         <button onclick="mostrarGrafico()">Listar</button>
         <div id="principal">
-            <p id="lista"></p>
+
         </div>
 
         <script>
@@ -29,7 +29,24 @@
                             const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
                             chartData.push([region.region, totalConfirmados]);
                         }
-
+        
+                        // Carga Google Charts y dibuja el gráfico
+                        google.charts.load("current", { packages: ["corechart"] });
+                        google.charts.setOnLoadCallback(function () {
+                            const dataTable = google.visualization.arrayToDataTable(chartData);
+        
+                            const options = {
+                                title: "Casos confirmados por región",
+                                hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 }, // Muestra nombres inclinados
+                                vAxis: { title: "Confirmados" },
+                                legend: { position: "none" },
+                                bar: { groupWidth: "95%" }, // Incrementa el tamaño de las barras
+                                chartArea: { width: "85%", height: "100%" } // Ajusta el área del gráfico
+                            };
+        
+                            const chart = new google.visualization.ColumnChart(document.getElementById("principal"));
+                            chart.draw(dataTable, options);
+                        });
                     } else {
                         console.error("Error al cargar el archivo data.json");
                     }

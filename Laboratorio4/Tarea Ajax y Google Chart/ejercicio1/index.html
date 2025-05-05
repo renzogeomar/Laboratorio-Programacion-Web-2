@@ -15,14 +15,14 @@
         <script>
             function listar(){
                 const xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "./data.json", true);
+                xhttp.open("GET", "../data.json", true);
                 xhttp.onload = function (){
                     if (xhttp.status === 200) {
                         // Convierte la respuesta en un objeto JSON
                         const data = JSON.parse(xhttp.responseText);
 
                         // Extrae los nombres de las regiones
-                        const regiones = data.regiones.map(region => region.nombre);
+                        const regiones = data.map(region => region.region);
                         document.getElementById("lista").innerHTML = regiones.join("<br>");
                     } else {
                         console.error("Error al cargar el archivo data.json");

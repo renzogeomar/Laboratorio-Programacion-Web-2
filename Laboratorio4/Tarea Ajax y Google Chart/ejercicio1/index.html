@@ -22,7 +22,7 @@
                         const data = JSON.parse(xhttp.responseText);
 
                         // Extrae los nombres de las regiones
-                        const regiones = data.map(region => region.region);
+                        const regiones = data.map(region => region.region); // Recorre el arreglo y extrae 'region'
                         document.getElementById("lista").innerHTML = regiones.join("<br>");
                     } else {
                         console.error("Error al cargar el archivo data.json");

@@ -7,12 +7,19 @@
     </head>   
     <body>
         <h1>Número total de confirmados por región: </h1>
-        <button onclick="listar()">Listar</button>
+        <button onclick="mostrar()">Listar</button>
         <div id="principal">
             <p id="lista"></p>
         </div>
 
         <script>
+            function mostrar(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../data.json", true);
+                xhttp.onload = function (){
+                    
+                }
+            }
 
         </script>
         

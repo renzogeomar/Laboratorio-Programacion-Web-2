@@ -14,7 +14,6 @@
         </div>
 
         <script>
-            google.charts.load('current', {'packages':['corechart']});
             function mostrarGrafico() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../data.json", true);
@@ -23,14 +22,36 @@
                         // Convierte la respuesta en un objeto JSON
                         const data = JSON.parse(xhttp.responseText);
         
-
+                        // Busca la región "Arequipa"
+                        let regionArequipa = null;
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].region === "Arequipa") {
+                                regionArequipa = data[i];
+                                break;
+                            }
+                        }
+        
+                        if (regionArequipa) {
+                            // Prepara los datos para el gráfico
+                            const chartData = [["Fecha", "Confirmados"]];
+                            for (let i = 0; i < regionArequipa.confirmed.length; i++) {
+                                const fecha = regionArequipa.confirmed[i].date;
+                                const valor = parseInt(regionArequipa.confirmed[i].value);
+                                chartData.push([fecha, valor]);
+                            }
+        
+                        } else {
+                            console.error("No se encontraron datos para la región Arequipa.");
+                        }
                     } else {
                         console.error("Error al cargar el archivo data.json");
                     }
                 };
+        
                 xhttp.onerror = function () {
                     console.error("Error de conexión al intentar cargar el archivo data.json");
                 };
+        
                 xhttp.send();
             }
         </script>

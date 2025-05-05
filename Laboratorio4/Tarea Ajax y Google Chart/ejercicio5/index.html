@@ -49,12 +49,12 @@
                                     title: "Confirmados",
                                     viewWindow: { min: 0 } // Asegura que el eje comience en 0
                                 },
-                                legend: { position: "none" },
-                                bar: { groupWidth: "95%" }, // Incrementa el tamaño de las barras
+                                legend: { position: "bottom" },
                                 chartArea: { width: "85%", height: "80%" } // Ajusta el área del gráfico
                             };
         
-                            const chart = new google.visualization.ColumnChart(document.getElementById("principal"));
+                            // Cambia ColumnChart por LineChart
+                            const chart = new google.visualization.LineChart(document.getElementById("principal"));
                             chart.draw(dataTable, options);
                         });
                     } else {

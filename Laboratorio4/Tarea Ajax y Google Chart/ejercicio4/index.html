@@ -3,17 +3,19 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/style.css" />
-        <title>"Muestre el número total de confirmados por región”</title>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <title>"Visualice un gráfico en el tiempo de los valores para la región de Arequipa”</title>
     </head>   
     <body>
-        <h1>Número total de confirmados por región: </h1>
-        <button onclick="mostrar()">Listar</button>
+        <h1>Gráfico para los valores de Arequipa: </h1>
+        <button onclick="mostrarGrafico()">Listar</button>
         <div id="principal">
             <p id="lista"></p>
         </div>
 
         <script>
-            function mostrar() {
+            google.charts.load('current', {'packages':['corechart']});
+            function mostrarGrafico() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../data.json", true);
                 xhttp.onload = function () {
@@ -22,7 +24,6 @@
                         const data = JSON.parse(xhttp.responseText);
         
 
-                        document.getElementById("lista").innerHTML = resultados.join("<br>");
                     } else {
                         console.error("Error al cargar el archivo data.json");
                     }

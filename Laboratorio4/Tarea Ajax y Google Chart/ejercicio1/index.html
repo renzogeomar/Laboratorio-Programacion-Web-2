@@ -2,33 +2,38 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-
         <link rel="stylesheet" href="css/style.css" />
         <title>Lista de todas las “regiones”</title>
     </head>   
     <body>
         <h1>Lista de todas las regiones: </h1>
+        <button onclick="listar()">Listar</button>
         <div id="principal">
             <p id="lista"></p>
         </div>
 
         <script>
-            const xhttp = new XMLHttpRequest();
-            xhr.open("GET", "./data.json", true);
-            xhttp = function (){
-                if (xhttp.status === 200) {
-                    // Convierte la respuesta en un objeto JSON
-                    const data = JSON.parse(xhttp.responseText);
+            function listar(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "./data.json", true);
+                xhttp.onload = function (){
+                    if (xhttp.status === 200) {
+                        // Convierte la respuesta en un objeto JSON
+                        const data = JSON.parse(xhttp.responseText);
 
-                    // Extrae los nombres de las regiones y los muestra en el elemento con id "lista"
-                    const regiones = data.regiones.map(region => region.nombre); // Ajusta según la estructura de tu JSON
-                    document.getElementById("lista").innerHTML = regiones.join("<br>");
-                } else {
-                    console.error("Error al cargar el archivo data.json");
-                }
-            };
+                        // Extrae los nombres de las regiones
+                        const regiones = data.regiones.map(region => region.nombre);
+                        document.getElementById("lista").innerHTML = regiones.join("<br>");
+                    } else {
+                        console.error("Error al cargar el archivo data.json");
+                    }
+                };
+                 // En caso que halla errores de conexión
+                 xhttp.onerror = function () {
+                    console.error("Error de conexión al intentar cargar el archivo data.json");
+                };
+                xhttp.send();
             }
-
         </script>
         
     </body> 

@@ -26,12 +26,19 @@
                             // Obtén el último valor de "confirmed"
                             const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
         
-                            // Devuelve el nombre de la región y el total
-                            return `${region.region}: ${totalConfirmados}`;
-                        });
+                            // Devuelve un objeto con el nombre de la región y el total
+                            return { nombre: region.region, total: totalConfirmados };
+                        })
+                        .sort((a, b) => b.total - a.total) // Ordena de mayor a menor
+                        .slice(0, 10); // Toma las primeras 10 regiones
 
-                        document.getElementById("lista").innerHTML = resultados.join("<br>");
-                    } else {
+                        // Formatea los resultados para mostrarlos
+                        const listaResultados = resultados.map(region => `${region.nombre}: ${region.total}`);
+
+                        // Muestra los resultados en el elemento con id "lista"
+                        document.getElementById("lista").innerHTML = listaResultados.join("<br>");
+                    } 
+                    else {
                         console.error("Error al cargar el archivo data.json");
                     }
                 };

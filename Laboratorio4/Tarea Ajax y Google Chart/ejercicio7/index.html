@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <title>Presione la región que desea visualizar: </title>
+    <title>Presione la región que desea visualizar</title>
     <style>
         #principal {
             width: 100%;
-            height: 700px;
+            height: 600px;
+            margin-top: 20px;
         }
         .boton-region {
             margin: 5px;
@@ -18,23 +19,27 @@
     </style>
 </head>
 <body>
-    <h1>Selecciona una región para ver su gráfico (excepto Lima y Callao):</h1>
+    <h1>Selecciona regiones para agregarlas/quitar del gráfico:</h1>
     <div id="botones"></div>
     <div id="principal"></div>
 
     <script>
-        let datosGlobales = [];
+        let datosGlobales = {};
+        let regionesSeleccionadas = new Set();
 
         // Cargar Google Charts
         google.charts.load("current", { packages: ["corechart"] });
 
-        // Cargar datos desde data.json
+        // Cargar datos JSON
         function cargarDatos() {
             const xhttp = new XMLHttpRequest();
             xhttp.open("GET", "../data.json", true);
             xhttp.onload = function () {
                 if (xhttp.status === 200) {
-                    datosGlobales = JSON.parse(xhttp.responseText);
+                    const datos = JSON.parse(xhttp.responseText);
+                    datos.forEach(region => {
+                        datosGlobales[region.region] = region;
+                    });
                     crearBotones();
                 } else {
                     console.error("Error al cargar el archivo data.json");
@@ -46,24 +51,49 @@
             xhttp.send();
         }
 
-        // Crear botones por región (excepto Lima y Callao)
+        // Crear botones por región
         function crearBotones() {
             const contenedor = document.getElementById("botones");
-            datosGlobales.forEach(region => {
-                if (region.region !== "Lima" && region.region !== "Callao") {
-                    const boton = document.createElement("button");
-                    boton.textContent = region.region;
-                    boton.className = "boton-region";
-                    boton.onclick = function () {
-                        mostrarGrafico(region);
-                    };
-                    contenedor.appendChild(boton);
-                }
-            });
+            for (const nombreRegion in datosGlobales) {
+                const boton = document.createElement("button");
+                boton.textContent = nombreRegion;
+                boton.className = "boton-region";
+                boton.onclick = function () {
+                    if (regionesSeleccionadas.has(nombreRegion)) {
+                        regionesSeleccionadas.delete(nombreRegion);
+                    } else {
+                        regionesSeleccionadas.add(nombreRegion);
+                    }
+                    actualizarGrafico();
+                };
+                contenedor.appendChild(boton);
+            }
         }
 
-        // Mostrar gráfico para una región
+        // Actualiza el gráfico con las regiones seleccionadas
+        function actualizarGrafico() {
+            const chartData = [["Región", "Confirmados"]];
+            regionesSeleccionadas.forEach(nombre => {
+                const region = datosGlobales[nombre];
+                const ultimoValor = parseInt(region.confirmed[region.confirmed.length - 1].value);
+                chartData.push([nombre, ultimoValor]);
+            });
 
+            const dataTable = google.visualization.arrayToDataTable(chartData);
+
+            const options = {
+                title: "Últimos casos confirmados por región",
+                hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 },
+                vAxis: { title: "Confirmados", viewWindow: { min: 0 } },
+                legend: { position: "none" },
+                chartArea: { width: "85%", height: "70%" }
+            };
+
+            const chart = new google.visualization.ColumnChart(document.getElementById("principal"));
+            chart.draw(dataTable, options);
+        }
+
+        window.onload = cargarDatos;
     </script>
 </body>
 </html>

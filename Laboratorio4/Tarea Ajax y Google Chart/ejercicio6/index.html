@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <title>"Visualice un gráfico comparativo del crecimiento en regiones excepto Lima y Callao”</title>
+    </head>
+    <style>
+        /* Incrementa el tamaño del contenedor del gráfico */
+        #principal {
+            width: 100%;
+            height: 700px; /* Incrementa la altura para que las barras sean más visibles */
+        }
+    </style>   
+    <body>
+        <h1>Gráfico comparativo de todas las regiones excepto Lima y Callao: </h1>
+        <button onclick="mostrarGrafico()">Listar</button>
+        <div id="principal">
+
+        </div>
+
+        <script>
+            function mostrarGrafico() {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "../data.json", true);
+                xhttp.onload = function () {
+                    if (xhttp.status === 200) {
+                        // Convierte la respuesta en un objeto JSON
+                        const data = JSON.parse(xhttp.responseText);
+        
+                        // Prepara los datos para el gráfico
+                        const chartData = [["Región", "Confirmados"]]; // Encabezados
+                        for (let i = 0; i < data.length; i++) {
+                            const region = data[i];
+                            const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
+                            chartData.push([region.region, totalConfirmados]);
+                        }
+        
+                        // Carga Google Charts y dibuja el gráfico
+                        google.charts.load("current", { packages: ["corechart"] });
+                        google.charts.setOnLoadCallback(function () {
+                            const dataTable = google.visualization.arrayToDataTable(chartData);
+        
+                            const options = {
+                                title: "Casos confirmados por región",
+                                hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 }, // Muestra nombres inclinados
+                                vAxis: { 
+                                    title: "Confirmados",
+                                    viewWindow: { min: 0 } // Asegura que el eje comience en 0
+                                },
+                                legend: { position: "bottom" },
+                                chartArea: { width: "85%", height: "80%" } // Ajusta el área del gráfico
+                            };
+        
+                            // Cambia ColumnChart por LineChart
+                            const chart = new google.visualization.LineChart(document.getElementById("principal"));
+                            chart.draw(dataTable, options);
+                        });
+                    } else {
+                        console.error("Error al cargar el archivo data.json");
+                    }
+                };
+        
+                xhttp.onerror = function () {
+                    console.error("Error de conexión al intentar cargar el archivo data.json");
+                };
+        
+                xhttp.send();
+            }
+        </script>
+        
+    </body> 
+</html>

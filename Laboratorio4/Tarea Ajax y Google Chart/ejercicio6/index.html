@@ -29,12 +29,14 @@
                         // Convierte la respuesta en un objeto JSON
                         const data = JSON.parse(xhttp.responseText);
         
-                        // Prepara los datos para el gráfico
+                        // Prepara los datos para el gráfico excluyendo "Lima" y "Callao"
                         const chartData = [["Región", "Confirmados"]]; // Encabezados
                         for (let i = 0; i < data.length; i++) {
                             const region = data[i];
-                            const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
-                            chartData.push([region.region, totalConfirmados]);
+                            if (region.region !== "Lima" && region.region !== "Callao") { // Excluye Lima y Callao
+                                const totalConfirmados = parseInt(region.confirmed[region.confirmed.length - 1].value);
+                                chartData.push([region.region, totalConfirmados]);
+                            }
                         }
         
                         // Carga Google Charts y dibuja el gráfico
@@ -43,7 +45,7 @@
                             const dataTable = google.visualization.arrayToDataTable(chartData);
         
                             const options = {
-                                title: "Casos confirmados por región",
+                                title: "Casos confirmados por región (excepto Lima y Callao)",
                                 hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 }, // Muestra nombres inclinados
                                 vAxis: { 
                                     title: "Confirmados",
@@ -53,7 +55,6 @@
                                 chartArea: { width: "85%", height: "80%" } // Ajusta el área del gráfico
                             };
         
-                            // Cambia ColumnChart por LineChart
                             const chart = new google.visualization.LineChart(document.getElementById("principal"));
                             chart.draw(dataTable, options);
                         });

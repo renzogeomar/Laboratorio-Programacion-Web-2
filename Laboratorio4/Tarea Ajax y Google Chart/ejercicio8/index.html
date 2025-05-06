@@ -83,20 +83,29 @@
 
             // Actualiza el gráfico con las regiones seleccionadas
             function actualizarGrafico() {
-                const chartData = [["Región", "Confirmados"]];
-                regionesSeleccionadas.forEach(nombre => {
-                    const region = datosGlobales[nombre];
-                    const ultimoValor = parseInt(region.confirmed[region.confirmed.length - 1].value);
-                    chartData.push([nombre, ultimoValor]);
-                });
+                // Encabezado: ["Fecha", "Región1", "Región2", ...]
+                const encabezado = ["Fecha", ...regionesSeleccionadas];
+                const dataChart = [encabezado];
 
-                const dataTable = google.visualization.arrayToDataTable(chartData);
+                for (let i = 0; i < fechas.length; i++) {
+                    const fila = [fechas[i]];
+
+                    for (const nombreRegion of regionesSeleccionadas) {
+                        const region = datosGlobales[nombreRegion];
+                        const valor = parseInt(region.confirmed[i].value);
+                        fila.push(valor);
+                    }
+
+                    dataChart.push(fila);
+                }
+
+                const dataTable = google.visualization.arrayToDataTable(dataChart);
 
                 const options = {
-                    title: "Evolucion de casos confirmados por región",
-                    hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 },
+                    title: "Evolución de casos confirmados por región",
+                    hAxis: { title: "Fecha", slantedText: true, slantedTextAngle: 45 },
                     vAxis: { title: "Confirmados", viewWindow: { min: 0 } },
-                    legend: { position: "none" },
+                    legend: { position: "bottom" },
                     chartArea: { width: "85%", height: "70%" }
                 };
 

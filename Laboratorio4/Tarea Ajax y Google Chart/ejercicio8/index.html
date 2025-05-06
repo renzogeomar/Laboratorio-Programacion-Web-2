@@ -4,7 +4,8 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/style.css" />
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <title>Presione la región que desea visualizar</title>
+        <title>Visualice un gráfico comparativo del crecimiento en regiones excepto 
+            Lima y Callao, mostrando el número de confirmados por cada día</title>
         <style>
             #principal {
                 width: 100%;
@@ -82,14 +83,14 @@
                 const dataTable = google.visualization.arrayToDataTable(chartData);
 
                 const options = {
-                    title: "Últimos casos confirmados por región",
+                    title: "Evolucion de casos confirmados por región",
                     hAxis: { title: "Regiones", slantedText: true, slantedTextAngle: 45 },
                     vAxis: { title: "Confirmados", viewWindow: { min: 0 } },
                     legend: { position: "none" },
                     chartArea: { width: "85%", height: "70%" }
                 };
 
-                const chart = new google.visualization.ColumnChart(document.getElementById("principal"));
+                const chart = new google.visualization.LineChart(document.getElementById("principal"));
                 chart.draw(dataTable, options);
             }
 

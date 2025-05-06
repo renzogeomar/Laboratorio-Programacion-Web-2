@@ -4,8 +4,7 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="css/style.css" />
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <title>Visualice un gráfico comparativo del crecimiento en regiones excepto 
-            Lima y Callao, mostrando el número de confirmados por cada día</title>
+        <title>Visualización de casos confirmados por región</title>
         <style>
             #principal {
                 width: 100%;
@@ -17,21 +16,24 @@
                 padding: 10px;
                 cursor: pointer;
             }
+            .boton-activo {
+                background-color: #4CAF50;
+                color: white;
+            }
         </style>
     </head>
     <body>
-        <h1>Selecciona regiones para agregarlas/quitar del gráfico:</h1>
+        <h1>Selecciona regiones para ver su evolución (excluye Lima y Callao):</h1>
         <div id="botones"></div>
         <div id="principal"></div>
 
         <script>
             let datosGlobales = {};
             let regionesSeleccionadas = new Set();
+            let fechas = [];
 
-            // Cargar Google Charts
             google.charts.load("current", { packages: ["corechart"] });
 
-            // Cargar datos JSON
             function cargarDatos() {
                 const xhttp = new XMLHttpRequest();
                 xhttp.open("GET", "../data.json", true);
@@ -61,8 +63,6 @@
                 xhttp.send();
             }
 
-
-            // Crear botones por región
             function crearBotones() {
                 const contenedor = document.getElementById("botones");
                 for (const nombreRegion in datosGlobales) {
@@ -72,8 +72,10 @@
                     boton.onclick = function () {
                         if (regionesSeleccionadas.has(nombreRegion)) {
                             regionesSeleccionadas.delete(nombreRegion);
+                            boton.classList.remove("boton-activo");
                         } else {
                             regionesSeleccionadas.add(nombreRegion);
+                            boton.classList.add("boton-activo");
                         }
                         actualizarGrafico();
                     };
@@ -81,7 +83,6 @@
                 }
             }
 
-            // Actualiza el gráfico con las regiones seleccionadas
             function actualizarGrafico() {
                 // Encabezado: ["Fecha", "Región1", "Región2", ...]
                 const encabezado = ["Fecha", ...regionesSeleccionadas];

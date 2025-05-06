@@ -38,9 +38,18 @@
                 xhttp.onload = function () {
                     if (xhttp.status === 200) {
                         const datos = JSON.parse(xhttp.responseText);
+
                         datos.forEach(region => {
-                            datosGlobales[region.region] = region;
+                            if (region.region !== "Lima" && region.region !== "Callao") {
+                                datosGlobales[region.region] = region;
+
+                                // Usamos fechas de la primera región como referencia
+                                if (fechas.length === 0) {
+                                    fechas = region.confirmed.map(d => d.date);
+                                }
+                            }
                         });
+
                         crearBotones();
                     } else {
                         console.error("Error al cargar el archivo data.json");
@@ -51,6 +60,7 @@
                 };
                 xhttp.send();
             }
+
 
             // Crear botones por región
             function crearBotones() {

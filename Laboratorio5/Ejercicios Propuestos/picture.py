@@ -45,12 +45,23 @@ class Picture:
     return Picture(nueva_img)
 
   def up(self, p):
-    return Picture(None)
+    """ Pone la imagen p encima de la actual """
+    return Picture(p.img + self.img)
 
   def under(self, p):
-    """ Devuelve una nueva figura poniendo la figura p sobre la
-        figura actual """
-    return Picture(None)
+    """ Pone la imagen p encima de esta, sobrescribiendo los caracteres no vacíos """
+    nueva_img = []
+    for i in range(len(self.img)):
+      linea1 = self.img[i]
+      linea2 = p.img[i]
+      nueva_linea = ''
+      for j in range(len(linea1)):
+        if linea2[j] != ' ':
+          nueva_linea += linea2[j]
+        else:
+          nueva_linea += linea1[j]
+      nueva_img.append(nueva_linea)
+    return Picture(nueva_img)
   
   def horizontalRepeat(self, n):
     """ Devuelve una nueva figura repitiendo la figura actual al costado

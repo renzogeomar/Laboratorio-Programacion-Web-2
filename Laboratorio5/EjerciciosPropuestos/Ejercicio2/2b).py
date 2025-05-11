@@ -8,9 +8,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from chessPictures import knight
 from interpreter import draw
 
+# Caballo blanco y su negativo (caballo negro)
 knight_black = knight.negative()
-figura = knight.join(knight_black)
-figuraInvertida = knight_black.join(knight)
-tablero = figura.up(figuraInvertida)
-draw(tablero)
+# Parte superior: blanco | negro
+fila_superior = knight.join(knight_black)
+# Parte inferior: negro | blanco
+fila_inferior = knight.join(knight_black).verticalMirror()
+# Unimos ambas
+resultado = fila_inferior.up(fila_superior)
+# Dibujamos
+draw(resultado)
 

@@ -11,9 +11,17 @@ from interpreter import draw
 black_square = square.negative()
 
 # Alternar: iniciando con negro
-fila = black_square
+fila1 = black_square
 for i in range(3):  # ya hay 1, agregamos 3 pares más
-    fila = fila.join(square).join(black_square)
+    fila1 = fila1.join(square).join(black_square)
 # Falta una casilla negra al final para tener 8
-fila = fila.join(square)
-draw(fila)
+fila1 = fila1.join(square)
+
+# Alternar: iniciando con blanco
+fila2 = square
+for i in range(3):  # ya hay 1, agregamos 3 pares más
+    fila2 = fila2.join(black_square).join(square)
+# Falta una casilla negra al final para tener 8
+fila2 = fila2.join(black_square)
+
+draw(fila1.up(fila2))

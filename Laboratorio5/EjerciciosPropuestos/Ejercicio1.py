@@ -39,10 +39,10 @@ mask = Picture([
 ])
 mostrar(pic.under(mask))
 
-print("Horizontal Repeat (x2):")
+print("Horizontal Repeat (x4):")
 mostrar(pic.horizontalRepeat(4))
 
-print("Vertical Repeat (x2):")
+print("Vertical Repeat (x4):")
 mostrar(pic.verticalRepeat(4))
 
 print("Rotate 90° clockwise:")

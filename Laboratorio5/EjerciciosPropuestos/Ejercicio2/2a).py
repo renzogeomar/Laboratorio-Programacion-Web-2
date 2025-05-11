@@ -12,9 +12,10 @@ from interpreter import draw
 # Caballo blanco y su negativo (caballo negro)
 knight_black = knight.negative()
 # Parte superior: blanco | negro
-figura = knight.join(knight_black)
+fila_superior = knight.join(knight_black)
 # Parte inferior: negro | blanco
-figura_invertida = knight_black.join(knight)
-# Unir ambas verticalmente
-tablero = figura.up(figura_invertida)
-draw(tablero)
+fila_inferior = knight_black.join(knight)
+# Unimos ambas
+resultado = fila_inferior.up(fila_superior)
+# Dibujamos
+draw(resultado)

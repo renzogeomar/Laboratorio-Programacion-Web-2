@@ -10,5 +10,7 @@ from interpreter import draw
 
 knight_black = knight.negative()
 figura = knight.join(knight_black)
-figuraInvertida = figura.negative()
-draw(figura.up(figuraInvertida))
+figuraInvertida = knight_black.join(knight)
+tablero = figura.up(figuraInvertida)
+draw(tablero)
+

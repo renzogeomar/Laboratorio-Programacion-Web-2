@@ -21,7 +21,7 @@ print("Espejo horizontal:")
 mostrar(pic.horizontalMirror())
 
 print("Negative:")
-# para esta prueba, asegúrate de tener inverter definido en colors.py con los caracteres usados.
+# Este metodo se probara en el ejercicio 2
 mostrar(pic.negative())
 
 print("Unirse con uno mismmo/ Join with itself:")

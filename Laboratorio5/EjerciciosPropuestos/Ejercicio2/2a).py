@@ -8,6 +8,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from chessPictures import knight
 from interpreter import draw
 
-# unir dos torres
-figura = knight.join(knight)
-draw(figura)
+
+knight_black = knight.negative()
+figura = knight.join(knight_black)
+figuraInvertida = figura.negative()
+draw(figura.up(figuraInvertida))

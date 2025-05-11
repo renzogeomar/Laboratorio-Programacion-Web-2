@@ -23,5 +23,6 @@ for i in range(3):  # ya hay 1, agregamos 3 pares más
     fila2 = fila2.join(black_square).join(square)
 # Falta una casilla negra al final para tener 8
 fila2 = fila2.join(black_square)
+tablero = fila2.up(fila1).up(fila2).up(fila1)
 
-draw(fila1.up(fila2))
+draw(tablero)

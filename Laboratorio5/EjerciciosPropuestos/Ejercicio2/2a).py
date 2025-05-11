@@ -9,7 +9,12 @@ from chessPictures import knight
 from interpreter import draw
 
 
+# Caballo blanco y su negativo (caballo negro)
 knight_black = knight.negative()
+# Parte superior: blanco | negro
 figura = knight.join(knight_black)
-figuraInvertida = figura.negative()
-draw(figura.up(figuraInvertida))
+# Parte inferior: negro | blanco
+figura_invertida = knight_black.join(knight)
+# Unir ambas verticalmente
+tablero = figura.up(figura_invertida)
+draw(tablero)

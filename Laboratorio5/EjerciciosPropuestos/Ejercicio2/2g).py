@@ -67,3 +67,12 @@ fila_piezas_negras = fila_piezas_negras.join(black_square.under(bishop.negative(
 fila_piezas_negras = fila_piezas_negras.join(square.under(knight.negative()))
 fila_piezas_negras = fila_piezas_negras.join(black_square.under(rock.negative()))
 
+# ----------------------------
+# Construir el tablero completo
+tableroCompleto = fila_piezas_blancas.up(fila_peones_blancos)
+tableroCompleto = tableroCompleto.up(tableroSinPiezas)
+tableroCompleto = tableroCompleto.up(fila_peones_negros)
+tableroCompleto = tableroCompleto.up(fila_piezas_negras)
+
+# Mostrar
+draw(tableroCompleto)

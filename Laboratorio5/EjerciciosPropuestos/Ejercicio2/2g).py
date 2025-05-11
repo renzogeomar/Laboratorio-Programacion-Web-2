@@ -30,7 +30,7 @@ for i in range(3):  # ya hay 1, agregamos 3 pares más
     fila2 = fila2.join(black_square).join(square)
 # Falta una casilla negra al final para tener 8
 fila2 = fila2.join(black_square)
-tableroSinPiezas = fila2.up(fila1).up(fila2).up(fila1)
+tableroSinPiezas = fila1.up(fila2).up(fila1).up(fila2)
 #------------------------------------------------------------
 
 # Parte del tablero con piezas
@@ -49,4 +49,21 @@ fila_piezas_blancas = fila_piezas_blancas.join(black_square.under(king))
 fila_piezas_blancas = fila_piezas_blancas.join(square.under(bishop))
 fila_piezas_blancas = fila_piezas_blancas.join(black_square.under(knight))
 fila_piezas_blancas = fila_piezas_blancas.join(square.under(rock))
+
+# ----------------------------
+# Fila de peones negros (igual que la blanca pero con negativo)
+fila_peones_negros = black_square.under(pawn.negative())
+for i in range(3):
+    fila_peones_negros = fila_peones_negros.join(square.under(pawn.negative())).join(black_square.under(pawn.negative()))
+fila_peones_negros = fila_peones_negros.join(square.under(pawn.negative()))
+
+# Fila de piezas negras (igual que la blanca pero con negativo)
+fila_piezas_negras = square.under(rock.negative())
+fila_piezas_negras = fila_piezas_negras.join(black_square.under(knight.negative()))
+fila_piezas_negras = fila_piezas_negras.join(square.under(bishop.negative()))
+fila_piezas_negras = fila_piezas_negras.join(black_square.under(queen.negative()))
+fila_piezas_negras = fila_piezas_negras.join(square.under(king.negative()))
+fila_piezas_negras = fila_piezas_negras.join(black_square.under(bishop.negative()))
+fila_piezas_negras = fila_piezas_negras.join(square.under(knight.negative()))
+fila_piezas_negras = fila_piezas_negras.join(black_square.under(rock.negative()))
 

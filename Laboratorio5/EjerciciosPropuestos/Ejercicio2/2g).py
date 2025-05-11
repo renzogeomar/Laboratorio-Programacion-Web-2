@@ -40,3 +40,13 @@ for i in range(3):
     fila_peones_blancos = fila_peones_blancos.join(square.under(pawn)).join(black_square.under(pawn))
 fila_peones_blancos = fila_peones_blancos.join(square.under(pawn))
 
+# Fila de piezas blancas (empieza con blanco)
+fila_piezas_blancas = black_square.under(rock)
+fila_piezas_blancas = fila_piezas_blancas.join(square.under(knight))
+fila_piezas_blancas = fila_piezas_blancas.join(black_square.under(bishop))
+fila_piezas_blancas = fila_piezas_blancas.join(square.under(queen))
+fila_piezas_blancas = fila_piezas_blancas.join(black_square.under(king))
+fila_piezas_blancas = fila_piezas_blancas.join(square.under(bishop))
+fila_piezas_blancas = fila_piezas_blancas.join(black_square.under(knight))
+fila_piezas_blancas = fila_piezas_blancas.join(square.under(rock))
+

@@ -34,5 +34,9 @@ tableroSinPiezas = fila2.up(fila1).up(fila2).up(fila1)
 #------------------------------------------------------------
 
 # Parte del tablero con piezas
-parteConPiezas = fila1.up(fila2)
-draw(parteConPiezas)
+# Fila de peones blancos (empieza con negro)
+fila_peones_blancos = black_square.under(pawn)
+for i in range(3):
+    fila_peones_blancos = fila_peones_blancos.join(square.under(pawn)).join(black_square.under(pawn))
+fila_peones_blancos = fila_peones_blancos.join(square.under(pawn))
+

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'travello',  # Your custom app for travel destinations
 ]
 
 MIDDLEWARE = [

@@ -8,7 +8,12 @@ from .forms import RegistroUsuarioForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_authenticated:
+        destinos = DestinosTuristicos.objects.all()
+    else:
+        destinos = []
+
+    return render(request, 'index.html', {'dests': destinos})
 def destinos(request):
     destinos = DestinosTuristicos.objects.all()
     return render(request, 'destinos.html', {'destinos': destinos})

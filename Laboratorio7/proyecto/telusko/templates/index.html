@@ -271,39 +271,36 @@
 		</div>
 
 		<!-- Destinations -->
-
 		{% if user.is_authenticated %}
-		<!-- Muestra los destinos solo si el usuario ha iniciado sesión -->
-		<div class="row destinations_row">
-			<div class="col">
-				<div class="destinations_container item_grid">
-
-					{% for dest in dests %}
-					<!-- Destination -->
-					<div class="destination item">
-						<div class="destination_image">
-							<div class="destination_title"><a href="#">{{ dest.nombreCiudad }}</a></div>
-							<img src="{{ dest.imagenCiudad.url }}" alt="{{ dest.nombreCiudad }}">
-							{% if dest.ofertaTour %}
-							<!--<div class="spec_offer text-center"><a href="#">Special Offer</a></div>-->
-							{% endif %}
-						</div>
-						<div class="destination_content">
-							<div class="destination_subtitle"><p>{{ dest.descripcionCiudad }}</p></div>
-							<div class="destination_price">From ${{ dest.precioTour }}</div>
-						</div>
+			<div class="container mt-5">
+				<div class="row">
+					<div class="col text-center">
+						<h2 class="mb-5" style="font-size: 2.5rem;">Destinos Turísticos</h2>
 					</div>
-					{% endfor %}
-
+				</div>
+				<div class="row destinations_row">
+					{% for dest in dests %}
+						<div class="col-md-4 mb-5">
+							<div class="card h-100 shadow-lg border-0" style="font-size: 1.1rem;">
+								<h3 class="card-title">{{ dest.nombreCiudad }}</h3>
+								<img src="{{ dest.imagenCiudad.url }}" class="card-img-top img-fluid" alt="{{ dest.nombreCiudad }}" style="height: 250px; object-fit: cover;">
+								<div class="card-body p-4">
+									<p class="card-text">{{ dest.descripcionCiudad }}</p>
+									<p class="card-text"><strong>Precio:</strong> ${{ dest.precioTour }}</p>
+									{% if dest.ofertaTour %}
+										<p class="text-success"><strong>¡En oferta!</strong></p>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+		           {% endfor %}
 				</div>
 			</div>
-		</div>
-	{% else %}
-		<div class="text-center">
-			<p><strong>Inicia sesión o regístrate para ver los destinos turísticos.</strong></p>
-		</div>
-	{% endif %}
-
+		{% else %}
+			<div class="text-center mt-5">
+				<p><strong>Inicia sesión o regístrate para ver los destinos turísticos.</strong></p>
+			</div>
+		{% endif %}
 		<!-- Testimonials -->
 
 		<div class="testimonials" id="testimonials">

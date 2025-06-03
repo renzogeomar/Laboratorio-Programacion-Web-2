@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ titulo }}</title>
+        <link rel="stylesheet" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    </head>
+    <body>
+    <div class="container mt-5">
+        <h2>{{ titulo }}</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'listar_destinos' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+    </body>
+</html>

@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegistroUsuarioForm
+from django.contrib.auth.decorators import login_required
+from .forms import DestinoForm
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def index(request):
@@ -44,3 +47,39 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+@login_required
+def listar_destinos(request):
+    destinos = DestinosTuristicos.objects.all()
+    return render(request, 'destinos/listar.html', {'destinos': destinos})
+
+@login_required
+def crear_destino(request):
+    if request.method == 'POST':
+        form = DestinoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_destinos')
+    else:
+        form = DestinoForm()
+    return render(request, 'destinos/formulario.html', {'form': form, 'titulo': 'Añadir Destino'})
+
+@login_required
+def modificar_destino(request, id):
+    destino = get_object_or_404(DestinosTuristicos, id=id)
+    if request.method == 'POST':
+        form = DestinoForm(request.POST, request.FILES, instance=destino)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_destinos')
+    else:
+        form = DestinoForm(instance=destino)
+    return render(request, 'destinos/formulario.html', {'form': form, 'titulo': 'Modificar Destino'})
+
+@login_required
+def eliminar_destino(request, id):
+    destino = get_object_or_404(DestinosTuristicos, id=id)
+    if request.method == 'POST':
+        destino.delete()
+        return redirect('listar_destinos')
+    return render(request, 'destinos/eliminar_confirmacion.html', {'destino': destino})

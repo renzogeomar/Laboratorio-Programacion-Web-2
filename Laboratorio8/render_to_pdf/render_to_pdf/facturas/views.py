@@ -6,6 +6,9 @@ import locale
 locale.setlocale(locale.LC_ALL, "")
 
 # Create your views here.
+def home_view(request):
+    return render(request, "index.html")
+
 def pdf_view(request, *args, **kwargs):
     data = {
         'date': datetime.date.today(),

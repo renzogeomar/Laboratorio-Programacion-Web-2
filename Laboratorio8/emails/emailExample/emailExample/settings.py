@@ -123,9 +123,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'renzoCorreoPrueba@outlook.com'
-EMAIL_HOST_PASSWORD = '123ABC456'
+EMAIL_HOST_USER = 'renzogeomarm@gmail.com'
+EMAIL_HOST_PASSWORD = 'sufc lxde hovp gehf'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
